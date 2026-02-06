@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Cyber Security Monitoring Platform</title>
+</head>
+<body>
+
+<h1>Security Dashboard</h1>
+
+<input id="target" placeholder="Authorized Website">
+<button onclick="startScan()">Start Network Scan</button>
+
+<pre id="result"></pre>
+
+<script>
+async function startScan(){
+    const target = document.getElementById("target").value;
+
+    const res = await fetch("http://localhost:5000/api/scan/network",{
+        method:"POST",
+        headers:{"Content-Type":"application/json"},
+        body:JSON.stringify({target})
+    });
+
+    const data = await res.json();
+    document.getElementById("result").textContent = data.data;
+}
+</script>
+
+</body>
+</html>
