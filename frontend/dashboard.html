@@ -1,19 +1,24 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Cyber Security Monitoring Platform</title>
+    <title>Cyber Security Platform</title>
 </head>
 <body>
 
 <h1>Security Dashboard</h1>
 
 <input id="target" placeholder="Authorized Website">
-<button onclick="startScan()">Start Network Scan</button>
 
-<pre id="result"></pre>
+<br><br>
+
+<button onclick="networkScan()">Network Scan</button>
+<button onclick="webScan()">Web Vulnerability Scan</button>
+
+<pre id="output"></pre>
 
 <script>
-async function startScan(){
+
+async function networkScan(){
     const target = document.getElementById("target").value;
 
     const res = await fetch("http://localhost:5000/api/scan/network",{
@@ -23,8 +28,22 @@ async function startScan(){
     });
 
     const data = await res.json();
-    document.getElementById("result").textContent = data.data;
+    document.getElementById("output").textContent = data.data;
 }
+
+async function webScan(){
+    const target = document.getElementById("target").value;
+
+    const res = await fetch("http://localhost:5000/api/scan/web",{
+        method:"POST",
+        headers:{"Content-Type":"application/json"},
+        body:JSON.stringify({target})
+    });
+
+    const data = await res.json();
+    document.getElementById("output").textContent = JSON.stringify(data, null, 2);
+}
+
 </script>
 
 </body>
