@@ -4,7 +4,12 @@ class NiktoScanner:
 
     def scan_server(self, target):
 
-        command = ["nikto", "-h", target]
+        command = [
+            "perl",
+            "C:/nikto-master/program/nikto.pl",
+            "-h",
+            target
+        ]
 
         try:
             output = subprocess.check_output(
