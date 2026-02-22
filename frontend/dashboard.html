@@ -17,48 +17,8 @@
 
 <pre id="output"></pre>
 
-<script>
 
-async function networkScan(){
-    const target = document.getElementById("target").value;
 
-    const res = await fetch("http://localhost:5000/api/scan/network",{
-        method:"POST",
-        headers:{"Content-Type":"application/json"},
-        body:JSON.stringify({target})
-    });
-
-    const data = await res.json();
-    document.getElementById("output").textContent = data.data;
-}
-
-async function webScan(){
-    const target = document.getElementById("target").value;
-
-    const res = await fetch("http://localhost:5000/api/scan/web",{
-        method:"POST",
-        headers:{"Content-Type":"application/json"},
-        body:JSON.stringify({target})
-    });
-
-    const data = await res.json();
-    document.getElementById("output").textContent = JSON.stringify(data, null, 2);
-}
-
-async function serverScan(){
-    const target = document.getElementById("target").value;
-
-    const res = await fetch("http://localhost:5000/api/scan/server",{
-        method:"POST",
-        headers:{"Content-Type":"application/json"},
-        body:JSON.stringify({target})
-    });
-
-    const data = await res.json();
-    document.getElementById("output").textContent = data.data;
-}
-
-</script>
-
+<script src="script.js"></script>
 </body>
 </html>
